@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 public class ThirdPersonCamera : MonoBehaviour
 {
     [FoldoutGroup("References")]
+    [SerializeField] private new Camera camera;
     [SerializeField] private Transform target;
 
     [FoldoutGroup("Follow Settings")]
@@ -32,6 +33,9 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Start()
     {
+        if (camera == null)
+            camera = GetComponent<Camera>();
+
         if (target == null)
         {
             Debug.LogError("No target assigned to ThirdPersonCamera!");
@@ -139,6 +143,11 @@ public class ThirdPersonCamera : MonoBehaviour
             if (newDistance < currentZoomDistance)
                 currentZoomDistance = newDistance;
         }
+    }
+
+    public Ray ScreenPointToRay(Vector3 screenPoint)
+    {
+        return camera.ScreenPointToRay(screenPoint);
     }
 
     #if UNITY_EDITOR
