@@ -36,6 +36,13 @@ A modular Inverse Kinematics (IK) system for Unity, featuring multiple IK solver
    - Choose your preferred IK solver type
    - Click "Setup IK"
 
+### Demo Scene
+
+The demo scene showcases the IK system in action. It includes both Fabrik and CCD solvers.
+For an easier visualisation, start the DEMO_scene and switch to editor view.
+
+![CCD vs Fabrik](Docs/Assets/CCDvsFabric.gif)
+(CCD left vs Fabrik right)
 
 ### Known Issues
 

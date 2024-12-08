@@ -105,29 +105,29 @@ namespace IK
         #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            // if (!drawGizmos || joints == null) return;
+            if (!drawGizmos || joints == null || joints.Length == 0) return;
 
-            // // Draw chain
-            // for (int i = 0; i < joints.Length - 1; i++)
-            // {
-            //     if (joints[i] == null || joints[i + 1] == null) continue;
+            // Draw chain
+            for (int i = 0; i < joints.Length - 1; i++)
+            {
+                if (joints[i] == null || joints[i + 1] == null) continue;
 
-            //     var scale = Vector3.Distance(joints[i].position, joints[i + 1].position) * 0.1f;
-            //     Handles.matrix = Matrix4x4.TRS(
-            //         joints[i].position,
-            //         Quaternion.FromToRotation(Vector3.up, joints[i + 1].position - joints[i].position),
-            //         new Vector3(scale, Vector3.Distance(joints[i + 1].position, joints[i].position), scale)
-            //     );
-            //     Handles.color = Color.blue;
-            //     Handles.DrawWireCube(Vector3.up * 0.5f, Vector3.one);
-            // }
+                var scale = Vector3.Distance(joints[i].position, joints[i + 1].position) * 0.1f;
+                Handles.matrix = Matrix4x4.TRS(
+                    joints[i].position,
+                    Quaternion.FromToRotation(Vector3.up, joints[i + 1].position - joints[i].position),
+                    new Vector3(scale, Vector3.Distance(joints[i + 1].position, joints[i].position), scale)
+                );
+                Handles.color = Color.blue;
+                Handles.DrawWireCube(Vector3.up * 0.5f, Vector3.one);
+            }
 
-            // // Draw error
-            // if (Target != null && joints[joints.Length - 1] != null)
-            // {
-            //     Handles.color = Color.yellow;
-            //     Handles.DrawDottedLine(joints[joints.Length - 1].position, Target.position, 5);
-            // }
+            // Draw error
+            if (Target != null && joints.Length > 0 && joints[joints.Length - 1] != null)
+            {
+                Handles.color = Color.yellow;
+                Handles.DrawDottedLine(joints[joints.Length - 1].position, Target.position, 5);
+            }
         }
         #endif
     }
